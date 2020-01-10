@@ -12,13 +12,24 @@
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('home', 'HomeController@index')->name('home');
 
-Route::get('profile', 'ProfileController@index')->name('profile');
+Route::middleware('auth')->get('/', 'HomeController@index')->name('home');
+
+
+Route::get('{user}', [ProfileController::class, 'index'])->name('profile.show');
+
+
+Route::middleware('auth')
+    ->name('account.')
+    ->prefix('account/')
+    ->group(function () {
+    Route::get('edit', 'ProfileController@edit')->name('edit');
+    Route::post('edit', 'ProfileController@update')->name('update');
+});
+

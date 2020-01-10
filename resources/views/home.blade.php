@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <a href={{route('profile')}}>Profile</a>
+                        <a href={{route('profile.show',\Illuminate\Support\Facades\Auth::id())}}>Profile</a>
                     </div>
                 </div>
             </div>
