@@ -8,12 +8,22 @@ use App\Media;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
     public function index(User $user)
     {
-        return view('profile.index', ['user' => $user]);
+
+        $avatar = Media::query()->find($user->avatar_id);
+        if (empty($avatar)) {
+            $avatar = 'klematis.jpg';
+        } else {
+            $avatar = $avatar->name;
+        }
+        return view('profile.index', [
+            'user' => $user, 'avatar' => $avatar
+        ]);
     }
 
     public function edit()
@@ -24,7 +34,7 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-        $request->file('avatar')->store('avatars');
+        $request->file('avatar')->store('public/avatars');
         $media = new Media();
         $media->name = $request->file('avatar')->hashName();
         $media->save();

@@ -10,7 +10,7 @@
                         <span><a href={{route('account.edit')}}>Edit Profile</a></span>
                     </div>
                     <div>
-                        <img src="" alt="avatar">
+                        <img src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar">
                     </div>
                 </div>
             </div>
