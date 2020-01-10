@@ -26,7 +26,7 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('media_id');
             $table->string('body', 45)->nullable();
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();
 
 
             $table->foreign('user_id', 'user_id_idx')

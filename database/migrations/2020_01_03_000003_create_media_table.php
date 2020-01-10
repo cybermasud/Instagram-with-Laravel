@@ -24,7 +24,7 @@ class CreateMediaTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 45);
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();
         });
     }
 

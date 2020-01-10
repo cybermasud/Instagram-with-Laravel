@@ -27,9 +27,10 @@ class CreateUsersTable extends Migration
             $table->string('email', 45);
             $table->string('password', 256);
             $table->UnsignedInteger('avatar_id')->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->text('bio')->nullable();
+            $table->timestamps();
             $table->timestamp('blocked_at')->nullable();
+            $table->text('bio')->nullable();
+
 
 
 

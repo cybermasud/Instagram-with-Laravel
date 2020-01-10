@@ -24,7 +24,7 @@ class CreateLikesTable extends Migration
             $table->engine = 'InnoDB';
             $table->unsignedInteger('post_id');
             $table->unsignedInteger('user_id');
-
+            $table->timestamps();
 
 
             $table->foreign('user_id', 'user_id_index_like')
@@ -44,8 +44,8 @@ class CreateLikesTable extends Migration
      *
      * @return void
      */
-     public function down()
-     {
-       Schema::dropIfExists($this->tableName);
-     }
+    public function down()
+    {
+        Schema::dropIfExists($this->tableName);
+    }
 }

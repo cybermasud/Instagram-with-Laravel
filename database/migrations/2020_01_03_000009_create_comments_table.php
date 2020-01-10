@@ -26,7 +26,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('post_id');
             $table->string('body', 45);
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();
 
 
 
