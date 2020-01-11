@@ -7,6 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         {{$user->name}}
+{{--todo: can edit--}}
                         <span><a href={{route('account.edit')}}>Edit Profile</a></span>
                     </div>
                     <div>

@@ -5,9 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Edit Profile') }}
-                        <span><a href="{{route('profile.show',\Illuminate\Support\Facades\Auth::id())}}">Profile</a> </span>
-                    </div>
+                    <div class="card-header">{{ __('Edit Profile') }} </div>
 
                     <div class="card-body">
                         <form method="POST" action="{{route('account.update')}}" enctype="multipart/form-data">
