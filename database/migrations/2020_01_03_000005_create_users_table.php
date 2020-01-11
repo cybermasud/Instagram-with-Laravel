@@ -24,12 +24,15 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 45);
+            $table->string('username', 45);
             $table->string('email', 45);
             $table->string('password', 256);
+            $table->text('bio')->nullable();
             $table->UnsignedInteger('avatar_id')->nullable();
             $table->timestamps();
             $table->timestamp('blocked_at')->nullable();
-            $table->text('bio')->nullable();
+            $table->string('remember_token', 60)->nullable();
+
 
 
 
