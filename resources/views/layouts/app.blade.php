@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+<div class="clearfix" id="app">
     <nav class="navbar navbar-light bg-white shadow-sm" style="height:10vh">
         <div class="container justify-content-sm-center">
             <div class="col-sm-8">
@@ -31,7 +31,7 @@
             <div class="col-sm-1">
                     @auth
                         <div class="nav-item">
-                            <a href="{{route('profile.show',\Illuminate\Support\Facades\Auth::id())}}">
+                            <a class="text-decoration-none text-dark" href="{{route('profile.show',\Illuminate\Support\Facades\Auth::id())}}">
                                 {{ Auth::user()->name }}
                             </a>
                         </div>
@@ -40,10 +40,10 @@
             </div>
         </div>
     </nav>
-    <main class="py-4" style="height:85vh">
+    <main class="py-4 container clearfix" style="height:100vh">
         @yield('content')
     </main>
-    <footer class="modal-footer" style="height:5vh">
+    <footer class="modal-footer" style="height:50px">
         <div class="col-sm-7">
             <p>@ Masood Amiri</p>
         </div>

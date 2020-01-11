@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
         $avatar = Media::query()->find($user->avatar_id);
         if (empty($avatar)) {
-            $avatar = 'klematis.jpg';
+            $avatar = 'default.jpg';
         } else {
             $avatar = $avatar->name;
         }
