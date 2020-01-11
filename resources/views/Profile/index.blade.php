@@ -10,9 +10,12 @@
         <section class="col-md-6 pt-4 ml-5">
             <div class="row pl-4">
                 <h1 class="">{{$user->name}}</h1>
-                <button class="btn btn-outline-light "><a
-                        class="font-weight-bold border rounded text-dark text-decoration-none p-1"
-                        href={{route('account.edit')}}>Edit Profile</a></button>
+                @can('show',$user)
+                    <button class="btn btn-outline-light "><a
+                            class="font-weight-bold border rounded text-dark text-decoration-none p-1"
+                            href={{route('account.edit')}}>Edit Profile</a>
+                    </button>
+                @endcan
             </div>
             <ul class="list-unstyled list-group list-group-horizontal">
                 <li class="p-3 bg-light"><span><span class="mr-1">0</span>posts</span></li>
