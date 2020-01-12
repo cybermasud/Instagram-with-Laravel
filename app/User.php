@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return 'username';
     }
+
+    public function media()
+    {
+        return $this->belongsTo(Media::class,'avatar_id','id');
+    }
 }

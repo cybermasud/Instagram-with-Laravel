@@ -31,7 +31,7 @@
             <div class="col-sm-1">
                     @auth
                         <div class="nav-item">
-                            <a class="text-decoration-none text-dark" href="{{route('profile.show',\Illuminate\Support\Facades\Auth::id())}}">
+                            <a class="text-decoration-none text-dark" href="{{route('profile.show',\Illuminate\Support\Facades\Auth::user()->username)}}">
                                 {{ Auth::user()->username }}
                             </a>
                         </div>

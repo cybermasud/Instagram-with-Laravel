@@ -13,16 +13,8 @@ class ProfileController extends Controller
 {
     public function index(User $user)
     {
-
-        $avatar = Media::query()->find($user->avatar_id);
-        if (empty($avatar)) {
-            $avatar = 'default.jpg';
-        } else {
-            $avatar = $avatar->name;
-        }
-        return view('profile.index', [
-            'user' => $user, 'avatar' => $avatar
-        ]);
+        $avatar = $user->media ? $user->media->name : 'default.jpg';
+        return view('profile.index', ['user' => $user, 'avatar' => $avatar]);
     }
 
     public function edit()

@@ -5,7 +5,8 @@
     <header class="row justify-content-sm-center">
         <div class="col-md-2">
             <img class="rounded-circle" style="width: 150px; height: 150px"
-                 src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar">
+                 src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}"
+                 alt="avatar">
         </div>
         <section class="col-md-6 pt-4 ml-5">
             <div class="row pl-4">
@@ -27,53 +28,33 @@
     <hr style="border-top: 1px solid #8c8c8c">
 
     <div>
-        <div class="row justify-content-center">
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
-            <div class="ml-1 mb-1" style="width: 19%;"><img style="max-width: 100%; max-height: 100%"
-                                                            src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'.$avatar)}}" alt="avatar"></div>
+        <div class="row">
+            <div class="ml-1 mb-1" style="width: 19%;">
+                <img style="max-width: 100%; max-height: 100%"
+                     src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'. $avatar)}}"
+                     alt="avatar">
+            </div>
+
+            <div class="ml-1 mb-1" style="width: 19%;">
+                <img style="max-width: 100%; max-height: 100%"
+                     src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'. $avatar)}}"
+                     alt="avatar">
+            </div>
+            <div class="ml-1 mb-1" style="width: 19%;">
+                <img style="max-width: 100%; max-height: 100%"
+                     src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'. $avatar)}}"
+                     alt="avatar">
+            </div>
+            <div class="ml-1 mb-1" style="width: 19%;">
+                <img style="max-width: 100%; max-height: 100%"
+                     src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'. $avatar)}}"
+                     alt="avatar">
+            </div>
+            <div class="ml-1 mb-1" style="width: 19%;">
+                <img style="max-width: 100%; max-height: 100%"
+                     src="{{\Illuminate\Support\Facades\Storage::url('public/avatars/'. $avatar)}}"
+                     alt="avatar">
+            </div>
         </div>
     </div>
 @endsection
