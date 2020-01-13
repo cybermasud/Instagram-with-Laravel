@@ -16,6 +16,10 @@
                             class="font-weight-bold border rounded text-dark text-decoration-none p-1"
                             href={{route('account.edit')}}>Edit Profile</a>
                     </button>
+                    <button class="btn btn-outline-light "><a
+                            class="font-weight-bold border rounded text-dark text-decoration-none p-1"
+                            href={{route('post.create')}}>New Post</a>
+                    </button>
                 @endcan
             </div>
             <ul class="list-unstyled list-group list-group-horizontal">
@@ -31,9 +35,11 @@
         <div class="row">
             @foreach($user->post as $post)
                 <div class="ml-1 mb-1" style="width: 19%;">
-                    <img style="max-width: 100%; max-height: 100%"
-                         src="{{asset('storage/avatars/'.$post->media->name)}}"
-                         alt="avatar">
+                    <a href="{{route('post.show', $post->id)}}">
+                        <img style="max-width: 100%; max-height: 100%"
+                             src="{{asset('storage/posts/'.$post->media->name)}}"
+                             alt="avatar">
+                    </a>
                 </div>
             @endforeach
 

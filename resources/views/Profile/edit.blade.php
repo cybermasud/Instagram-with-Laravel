@@ -74,12 +74,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="avatar"
+                                <label for="captcha"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Captcha') }}</label>
                                 <div class="col-md-6">
                                     {!! NoCaptcha::display() !!}
                                     @error('g-recaptcha-response')
-                                        <span class="help-block" style="color: red">
+                                        <span class="help-block" style="color: #e3342f">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror

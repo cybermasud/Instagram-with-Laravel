@@ -8,7 +8,10 @@
                     <div class="card-header">Home</div>
 
                     <div class="card-body">
-                        <p>Home</p>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            <button type="submit">Logout</button>
+                            @csrf
+                        </form>
                     </div>
                 </div>
             </div>

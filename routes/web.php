@@ -22,11 +22,14 @@ Auth::routes();
 Route::middleware('auth')->get('/', 'HomeController@index')->name('home');
 
 
-Route::get('posts', function () {
-    $post = \App\Post::find(1);
-    return $post->media->name;
-});
-
+Route::middleware('auth')
+    ->name('post.')
+    ->prefix('post/')
+    ->group(function () {
+        Route::get('create', 'PostController@create')->name('create');
+        Route::post('create', 'PostController@store')->name('store');
+    });
+Route::get('post/{post}', 'PostController@show')->name('post.show');
 
 Route::get('{user}', [ProfileController::class, 'index'])->name('profile.show');
 

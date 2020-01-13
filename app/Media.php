@@ -21,7 +21,10 @@ class Media extends Model
             $media->save();
             return $media->id;
         } elseif ($request instanceof PostRequest) {
-            dd('postRequest');
+            $request->file('post')->store('public/posts');
+            $media->name = $request->file('post')->hashName();
+            $media->save();
+            return $media->id;
         } else {
             return null;
         }
