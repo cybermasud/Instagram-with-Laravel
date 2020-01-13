@@ -4,6 +4,8 @@
 namespace App;
 
 
+use App\Events\MediaCreated;
+use App\Events\MediaDeleted;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +13,11 @@ use Illuminate\Database\Eloquent\Model;
 class Media extends Model
 {
     protected $table = 'media';
+
+    protected $dispatchesEvents = [
+        'created' => MediaCreated::class,
+        'deleted' => MediaDeleted::class
+    ];
 
     public static function storeMedia($request)
     {
