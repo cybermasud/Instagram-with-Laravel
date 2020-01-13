@@ -56,7 +56,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('post.edit', ['post' => $post]);
     }
 
     /**
@@ -68,7 +68,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->body = $request->input('caption');
+        $post->save();
+        return redirect(route('post.edit', $post->id));
+
     }
 
     /**

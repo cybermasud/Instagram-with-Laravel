@@ -5,18 +5,23 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">New Post</div>
-                    <div class="card-body">
-                        <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
+                    <div class="card-header">Edit Post</div>
+                    <div class="card-body justify-content-center">
+                        <div class="row justify-content-center">
+                            <img src="{{asset('storage/posts/'.$post->media->name)}}"
+                                 alt="post"
+                                 style="max-width: 100%; max-height: 100%">
+                        </div>
+                        <form method="post" action="{{route('post.update',$post->id)}}" enctype="multipart/form-data">
                             @csrf
+                            @method('put')
                             <div class="form-group row">
                                 <label for="caption"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Caption') }}</label>
                                 <div class="col-md-6">
                                     <textarea id="name" type="text"
                                               class="form-control @error('caption') is-invalid @enderror" name="caption"
-                                              autocomplete="name" autofocus>
-                                    </textarea>
+                                              autofocus>{{$post->body}}</textarea>
                                     @error('caption')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -25,14 +30,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="post"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Your Post') }}</label>
+                                <label for="tags"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Tags') }}</label>
                                 <div class="col-md-6">
-                                    <input id="post" type="file"
-                                           class="form-control-file @error('post') is-invalid @enderror"
-                                           name="post">
-
-                                    @error('post')
+                                    <input id="tags" type="text" value="{{$post->tags->name ?? ''}}"
+                                           class="form-control @error('tags') is-invalid @enderror" name="tags"
+                                           autofocus>
+                                    @error('tags')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -54,7 +58,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Post') }}
+                                        {{ __('Update') }}
                                     </button>
                                 </div>
                             </div>

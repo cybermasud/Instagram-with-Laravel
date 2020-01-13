@@ -25,7 +25,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('media_id');
-            $table->string('body', 45)->nullable();
+            $table->text('body')->nullable();
             $table->timestamps();
 
 

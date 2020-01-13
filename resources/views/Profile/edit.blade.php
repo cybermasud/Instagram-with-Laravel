@@ -6,8 +6,12 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Edit Profile') }} </div>
-
                     <div class="card-body">
+                        <div class="row justify-content-center my-3">
+                            <img class="rounded-circle" style="width: 150px; height: 150px"
+                                 src="{{asset('storage/avatars/'.$avatar)}}"
+                                 alt="avatar">
+                        </div>
                         <form method="POST" action="{{route('account.update')}}" enctype="multipart/form-data">
                             @csrf
 

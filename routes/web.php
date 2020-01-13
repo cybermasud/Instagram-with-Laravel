@@ -28,6 +28,9 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('create', 'PostController@create')->name('create');
         Route::post('create', 'PostController@store')->name('store');
+        Route::get('edit/{post}', 'PostController@edit')->name('edit');
+        Route::put('edit/{post}', 'PostController@update')->name('update');
+        Route::delete('{post}', 'PostController@destroy')->name('destroy');
     });
 Route::get('post/{post}', 'PostController@show')->name('post.show');
 

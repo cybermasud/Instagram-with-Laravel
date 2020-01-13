@@ -19,7 +19,9 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        return view('profile.edit', ['user' => Auth::user()]);
+        $user = Auth::user();
+        $avatar = $user->media ? $user->media->name : 'default.jpg';
+        return view('profile.edit', ['user' => $user, 'avatar' => $avatar]);
     }
 
     public function update(ProfileUpdateRequest $request)
