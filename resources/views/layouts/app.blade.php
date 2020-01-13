@@ -33,8 +33,8 @@
                 @auth
                     <div class="nav-item">
                         <a class="text-decoration-none text-dark"
-                           href="{{route('profile.show',\Illuminate\Support\Facades\Auth::user()->username)}}">
-                            {{ Auth::user()->username }}
+                           href="{{route('profile.show', $user->username)}}">
+                            {{ $user->username }}
                         </a>
                     </div>
                 @endauth

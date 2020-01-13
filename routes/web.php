@@ -22,7 +22,10 @@ Auth::routes();
 Route::middleware('auth')->get('/', 'HomeController@index')->name('home');
 
 
-Route::get('posts', [PostController::class, 'index']);
+Route::get('posts', function () {
+    $post = \App\Post::find(1);
+    return $post->media->name;
+});
 
 
 Route::get('{user}', [ProfileController::class, 'index'])->name('profile.show');

@@ -29,11 +29,13 @@
 
     <div>
         <div class="row">
-            <div class="ml-1 mb-1" style="width: 19%;">
-                <img style="max-width: 100%; max-height: 100%"
-                     src="{{asset('storage/avatars/'.$avatar)}}"
-                     alt="avatar">
-            </div>
+            @foreach($user->post as $post)
+                <div class="ml-1 mb-1" style="width: 19%;">
+                    <img style="max-width: 100%; max-height: 100%"
+                         src="{{asset('storage/avatars/'.$post->media->name)}}"
+                         alt="avatar">
+                </div>
+            @endforeach
 
         </div>
     </div>

@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $table = 'posts';
+    protected $with = 'media';
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function media()
+    {
+        return $this->belongsTo(Media::class, 'media_id');
     }
 }
