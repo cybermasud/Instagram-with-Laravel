@@ -12,7 +12,7 @@
 */
 
 
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +22,9 @@ Auth::routes();
 Route::middleware('auth')->get('/', 'HomeController@index')->name('home');
 
 
+Route::get('posts', [PostController::class, 'index']);
+
+
 Route::get('{user}', [ProfileController::class, 'index'])->name('profile.show');
 
 
@@ -29,7 +32,7 @@ Route::middleware('auth')
     ->name('account.')
     ->prefix('account/')
     ->group(function () {
-    Route::get('edit', 'ProfileController@edit')->name('edit');
-    Route::post('edit', 'ProfileController@update')->name('update');
-});
+        Route::get('edit', 'ProfileController@edit')->name('edit');
+        Route::post('edit', 'ProfileController@update')->name('update');
+    });
 

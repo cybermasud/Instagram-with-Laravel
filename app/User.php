@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Media::class, 'avatar_id', 'id');
     }
+
+    public function post()
+    {
+        return $this->hasMany(Post::class, 'user_id');
+    }
 }
