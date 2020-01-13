@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    {!! NoCaptcha::renderJs() !!}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -29,13 +30,14 @@
                 </a>
             </div>
             <div class="col-sm-1">
-                    @auth
-                        <div class="nav-item">
-                            <a class="text-decoration-none text-dark" href="{{route('profile.show',\Illuminate\Support\Facades\Auth::user()->username)}}">
-                                {{ Auth::user()->username }}
-                            </a>
-                        </div>
-                    @endauth
+                @auth
+                    <div class="nav-item">
+                        <a class="text-decoration-none text-dark"
+                           href="{{route('profile.show',\Illuminate\Support\Facades\Auth::user()->username)}}">
+                            {{ Auth::user()->username }}
+                        </a>
+                    </div>
+                @endauth
 
             </div>
         </div>

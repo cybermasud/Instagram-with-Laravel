@@ -15,7 +15,7 @@ class Media extends Model
     public static function storeMedia($request)
     {
         $media = new Media();
-        if ($request instanceof ProfileUpdateRequest AND !empty($request->file('avatar'))) {
+        if ($request instanceof ProfileUpdateRequest AND $request->hasFile('avatar')) {
             $request->file('avatar')->store('public/avatars');
             $media->name = $request->file('avatar')->hashName();
             $media->save();

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username'
+        'name', 'email', 'password', 'username', 'bio', 'avatar_id'
     ];
 
     /**
@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function media()
     {
-        return $this->belongsTo(Media::class,'avatar_id','id');
+        return $this->belongsTo(Media::class, 'avatar_id', 'id');
     }
 }
