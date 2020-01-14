@@ -10,7 +10,7 @@
         </div>
         <section class="col-md-6 pt-4 ml-5">
             <div class="row pl-4">
-                <h1 class="">{{$user->username}}</h1>
+                <h2 class="">{{$user->username}}</h2>
                 @can('show',$user)
                     <button class="btn btn-outline-light "><a
                             class="font-weight-bold border rounded text-dark text-decoration-none p-1"
@@ -27,6 +27,10 @@
                 <li class="p-3 bg-light"><span><span class="mr-1">0</span>followers</span></li>
                 <li class="p-3 bg-light"><span><span class="mr-1">0</span>following</span></li>
             </ul>
+            <div class="pl-3">
+                <div><h5>Bio</h5></div>
+                <div>{{$user->bio}}</div>
+            </div>
         </section>
     </header>
     <hr style="border-top: 1px solid #8c8c8c">

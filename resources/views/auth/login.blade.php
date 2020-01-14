@@ -56,10 +56,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-                                <button class="btn btn-primary">
-                                  <a class="text-light text-decoration-none" href="{{ route('register') }}"  >Register</a>
-                                </button>
-
                             </div>
                         </div>
                     </form>

@@ -4,10 +4,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @if(session()->has('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header">Edit Post</div>
                     <div class="card-body justify-content-center">
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center mb-4">
                             <img src="{{asset('storage/posts/'.$post->media->name)}}"
                                  alt="post"
                                  style="max-width: 100%; max-height: 100%">

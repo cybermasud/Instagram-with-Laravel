@@ -34,7 +34,7 @@ class PostController extends Controller
             'media_id' => Media::storeMedia($request),
             'body' => $request->input('caption')
         ]);
-        return redirect(route('post.create'));
+        return redirect(route('post.create'))->with('message', 'Post Created Successfully');
     }
 
     /**
@@ -70,7 +70,7 @@ class PostController extends Controller
     {
         $post->body = $request->input('caption');
         $post->save();
-        return redirect(route('post.edit', $post->id));
+        return redirect(route('post.edit', $post->id))->with('message', 'Post Updated Successfully');
 
     }
 
@@ -82,6 +82,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect(route('home'));
     }
 }

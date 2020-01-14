@@ -22,15 +22,15 @@ Auth::routes();
 Route::middleware('auth')->get('/', 'HomeController@index')->name('home');
 
 
-Route::middleware('auth')
+Route::middleware(['auth'])
     ->name('post.')
     ->prefix('post/')
     ->group(function () {
         Route::get('create', 'PostController@create')->name('create');
-        Route::post('create', 'PostController@store')->name('store');
-        Route::get('edit/{post}', 'PostController@edit')->name('edit');
-        Route::put('edit/{post}', 'PostController@update')->name('update');
-        Route::delete('{post}', 'PostController@destroy')->name('destroy');
+        Route::post('', 'PostController@store')->name('store');
+        Route::get('{post}/edit', 'PostController@edit')->name('edit')->middleware('can:update,post');
+        Route::put('{post}', 'PostController@update')->name('update')->middleware('can:update,post');;
+        Route::delete('{post}', 'PostController@destroy')->name('destroy')->middleware('can:update,post');;
     });
 Route::get('post/{post}', 'PostController@show')->name('post.show');
 
