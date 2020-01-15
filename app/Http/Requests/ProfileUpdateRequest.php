@@ -30,7 +30,7 @@ class ProfileUpdateRequest extends FormRequest
             'username' => ['required', 'alpha_dash', 'min:3', 'max:45', Rule::unique('users')->ignore(Auth::id())],
             'bio' => ['nullable', 'string', 'max:1000'],
             'avatar' => ['nullable', 'file', 'mimes:jpeg,png,jpg', 'max:2048'],
-            'g-recaptcha-response' => 'required|captcha'
+//            'g-recaptcha-response' => 'required|captcha'
         ];
     }
 }

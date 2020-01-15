@@ -9,20 +9,17 @@ use App\Events\MediaDeleted;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Database\Eloquent\Model;
+use Intervention\Image\Facades\Image;
 
 class Media extends Model
 {
     protected $table = 'media';
 
-    protected $dispatchesEvents = [
-        'created' => MediaCreated::class,
-        'deleted' => MediaDeleted::class
-    ];
 
     public static function storeMedia($request)
     {
         $media = new Media();
-        if ($request instanceof ProfileUpdateRequest AND $request->hasFile('avatar')) {
+        if ($request instanceof ProfileUpdateRequest && $request->hasFile('avatar')) {
             $request->file('avatar')->store('public/avatars');
             $media->name = $request->file('avatar')->hashName();
             $media->save();

@@ -10,18 +10,20 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MediaCreated
+class PostDeleted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $post;
 
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param $post
      */
-    public function __construct($media)
+    public function __construct($post)
     {
-        $this->media = $media;
+        $this->post = $post;
     }
 
     /**

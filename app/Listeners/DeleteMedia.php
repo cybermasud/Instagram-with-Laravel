@@ -2,9 +2,10 @@
 
 namespace App\Listeners;
 
-use App\Events\MediaDeleted;
+use App\Events\PostDeleted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Storage;
 
 class DeleteMedia
 {
@@ -21,11 +22,12 @@ class DeleteMedia
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param object $event
      * @return void
      */
-    public function handle(MediaDeleted $event)
+    public function handle(PostDeleted $event)
     {
-        //
+        $event->post->media->delete();
+        Storage::disk('local')->delete('public/posts/' . $event->post->media->name);
     }
 }
