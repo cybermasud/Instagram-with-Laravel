@@ -31,7 +31,6 @@ class ProfileController extends Controller
         $user->username = $request->input('username');
         $user->avatar_id = Media::storeMedia($request) ?? $user->avatar_id;
         $user->bio = $request->input('bio');
-
         $user->save();
         return redirect(route('account.edit'));
     }

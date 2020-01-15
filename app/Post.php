@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Events\PostDeleted;
+use App\Events\MediaDeleted;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -12,7 +12,7 @@ class Post extends Model
     protected $with = 'media';
 
     protected $dispatchesEvents = [
-        'deleted' => PostDeleted::class
+        'deleted' => MediaDeleted::class
     ];
 
     protected $fillable = ['user_id', 'media_id', 'body'];

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Events\PostDeleted;
+use App\Events\MediaDeleted;
 use App\Listeners\DeleteMedia;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -17,7 +17,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        PostDeleted::class => [
+        MediaDeleted::class => [
             DeleteMedia::class
         ],
     ];

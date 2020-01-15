@@ -39,8 +39,7 @@ class CreateUsersTable extends Migration
 
             $table->foreign('avatar_id', 'avatar_id_idx')
                 ->references('id')->on('media')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onDelete('set null');
         });
     }
 

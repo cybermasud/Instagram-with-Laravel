@@ -82,7 +82,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete();
+        $post->media->delete();
         return redirect(route('home'));
     }
 }
