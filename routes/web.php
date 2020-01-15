@@ -44,4 +44,3 @@ Route::middleware('auth')
         Route::get('edit', 'ProfileController@edit')->name('edit');
         Route::post('edit', 'ProfileController@update')->name('update');
     });
-
