@@ -18,14 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/test', function () {
 
-    $img_path = storage_path('app/public/avatars/default.jpg');
-    dd(getimagesize($img_path));
-    $img = Image::make($img_path)->resize(300, 200);
-
-    return $img->response('jpg');
-});
 Route::middleware('auth')->get('/', 'HomeController@index')->name('home');
 
 
