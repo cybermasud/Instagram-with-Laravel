@@ -5,7 +5,7 @@
     <header class="row justify-content-sm-center">
         <div class="col-md-2">
             <img class="rounded-circle" style="width: 150px; height: 150px"
-                 src="{{asset('storage/avatars/'.$avatar)}}"
+                 src="{{asset('storage/media/'.$avatar)}}"
                  alt="avatar">
         </div>
         <section class="col-md-6 pt-4 ml-5">
@@ -41,7 +41,7 @@
                 <div class="ml-1 mb-1" style="width: 19%;">
                     <a href="{{route('post.show', $post->id)}}">
                         <img style="max-width: 100%; max-height: 100%"
-                             src="{{asset('storage/posts/'.$post->media->name)}}"
+                             src="{{asset('storage/media/'.$post->media->name)}}"
                              alt="avatar">
                     </a>
                 </div>

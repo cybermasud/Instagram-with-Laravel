@@ -27,7 +27,6 @@ class DeleteMedia
      */
     public function handle(MediaDeleted $event)
     {
-        Storage::disk('local')->delete('public/posts/' . $event->media->name);
-        Storage::disk('local')->delete('public/avatars/' . $event->media->name);
+        Storage::disk('local')->delete('public/media/' . $event->media->name);
     }
 }

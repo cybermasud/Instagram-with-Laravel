@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
     {
         return [
             'caption' => ['nullable', 'string', 'max:1000'],
-            'post' => ['required', 'file', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'img' => ['required', 'file', 'mimes:jpeg,png,jpg', 'max:2048'],
 //            'g-recaptcha-response' => 'required|captcha'
         ];
     }

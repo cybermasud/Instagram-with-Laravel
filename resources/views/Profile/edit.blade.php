@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div class="row justify-content-center my-3">
                             <img class="rounded-circle" style="width: 150px; height: 150px"
-                                 src="{{asset('storage/avatars/'.$avatar)}}"
+                                 src="{{asset('storage/media/'.$avatar)}}"
                                  alt="avatar">
                         </div>
                         <form method="POST" action="{{route('account.update')}}" enctype="multipart/form-data">
@@ -68,7 +68,7 @@
                                 <div class="col-md-6">
                                     <input id="avatar" type="file"
                                            class="form-control-file @error('avatar') is-invalid @enderror"
-                                           name="avatar">
+                                           name="img">
 
                                     @error('avatar')
                                     <span class="invalid-feedback" role="alert">

@@ -35,7 +35,7 @@
                                 <div class="col-md-6">
                                     <input id="post" type="file"
                                            class="form-control-file @error('post') is-invalid @enderror"
-                                           name="post">
+                                           name="img">
 
                                     @error('post')
                                     <span class="invalid-feedback" role="alert">

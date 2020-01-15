@@ -8,7 +8,7 @@
                     <div class="card-header">Post</div>
                     <div class="card-body row justify-content-center">
                         <div class="col-md-7 justify-content-center">
-                            <img src="{{asset('storage/posts/'.$post->media->name)}}"
+                            <img src="{{asset('storage/media/'.$post->media->name)}}"
                                  alt="post"
                                  style="max-width: 100%; max-height: 100%">
                         </div>
