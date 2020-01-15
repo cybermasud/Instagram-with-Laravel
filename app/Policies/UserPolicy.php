@@ -21,8 +21,8 @@ class UserPolicy
         //
     }
 
-    public function show(User $user, User $model)
+    public function show(User $auth_user, User $user)
     {
-        return $user->is($model);
+        return $auth_user->id === $user->id;
     }
 }
