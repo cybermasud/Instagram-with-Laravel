@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('{user}/follow', 'ProfileController@followUser');
+
+Route::get('{user}/unfollow', 'ProfileController@unfollowUser');
+
+Route::get('{user}/accept', 'ProfileController@acceptFollowRequest');
 
 Route::middleware('auth')->get('/', 'HomeController@index')->name('home');
 

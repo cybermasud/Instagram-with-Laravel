@@ -54,4 +54,44 @@ class ProfileController extends Controller
         $user->save();
         return redirect(route('account.edit'));
     }
+
+    /**
+     * follow user
+     *
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function followUser(User $user)
+    {
+        if (!$user->followers->pluck('id')->contains(Auth::id())) {
+            $user->followers()->attach(Auth::id());
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * unfollow user
+     *
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function unfollowUser(User $user)
+    {
+        if ($user->followers->pluck('id')->contains(Auth::id())) {
+            $user->followers()->detach(Auth::id());
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * accept following request
+     *
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function acceptFollowRequest(User $user)
+    {
+        Auth::user()->followers()->updateExistingPivot($user->id, ['status' => 1]);
+        return redirect()->back();
+    }
 }

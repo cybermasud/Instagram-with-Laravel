@@ -24,18 +24,16 @@ class CreateFollowersTable extends Migration
             $table->engine = 'InnoDB';
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('follower_id');
-            $table->binary('status')->nullable();
+            $table->boolean('status')->nullable();
 
 
-            $table->foreign('user_id', 'follower_id_idx')
+            $table->foreign('user_id')
                 ->references('id')->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onDelete('cascade');
 
-            $table->foreign('follower_id', 'user_id_index')
+            $table->foreign('follower_id')
                 ->references('id')->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onDelete('cascade');
         });
     }
 
