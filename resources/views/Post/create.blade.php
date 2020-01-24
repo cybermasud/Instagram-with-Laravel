@@ -33,11 +33,11 @@
                                 <label for="post"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Your Post') }}</label>
                                 <div class="col-md-6">
-                                    <input id="post" type="file"
-                                           class="form-control-file @error('post') is-invalid @enderror"
+                                    <input id="img" type="file"
+                                           class="form-control-file @error('img') is-invalid @enderror"
                                            name="img">
 
-                                    @error('post')
+                                    @error('img')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

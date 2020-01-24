@@ -38,8 +38,8 @@ Route::middleware('auth')
         Route::get('create', 'PostController@create')->name('create');
         Route::post('', 'PostController@store')->name('store');
         Route::get('{post}/edit', 'PostController@edit')->name('edit')->middleware('can:update,post');
-        Route::put('{post}', 'PostController@update')->name('update')->middleware('can:update,post');;
-        Route::delete('{post}', 'PostController@destroy')->name('destroy')->middleware('can:update,post');;
+        Route::put('{post}', 'PostController@update')->name('update')->middleware('can:update,post');
+        Route::delete('{post}', 'PostController@destroy')->name('destroy')->middleware('can:update,post');
     });
 Route::get('post/{post}', 'PostController@show')->name('post.show');
 
