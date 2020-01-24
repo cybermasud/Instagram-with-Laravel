@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div class="row justify-content-center my-3">
                             <img class="rounded-circle" style="width: 150px; height: 150px"
-                                 src="{{asset('storage/media/'.$avatar)}}"
+                                 src="{{asset('storage/media/'.$user->media->name)}}"
                                  alt="avatar">
                         </div>
                         <form method="POST" action="{{route('account.update')}}" enctype="multipart/form-data">

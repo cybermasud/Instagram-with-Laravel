@@ -21,11 +21,13 @@ class ProfileController extends Controller
     {
         $is_following = $user->followers()->where('follower_id', Auth::id())->where('status', 1)->exists();
         $follow_requested = $user->followers()->where('follower_id', Auth::id())->where('status', null)->exists();
-        $avatar = optional($user->media)->name ?? 'default.jpg';
+        $followings_count = $user->followings()->where('status', 1)->count();
+        $followers_count = $user->followers()->where('status', 1)->count();
         return view('profile.index', ['user' => $user,
-            'avatar' => $avatar,
             'is_following' => $is_following,
-            'follow_requested' => $follow_requested]);
+            'follow_requested' => $follow_requested,
+            'followers' => $followers_count,
+            'followings' => $followings_count]);
     }
 
     /**
@@ -36,8 +38,7 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        $avatar = $user->media ? $user->media->name : 'default.jpg';
-        return view('profile.edit', ['user' => $user, 'avatar' => $avatar]);
+        return view('profile.edit', ['user' => $user]);
     }
 
     /**

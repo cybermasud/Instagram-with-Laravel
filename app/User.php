@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function media()
     {
-        return $this->belongsTo(Media::class, 'avatar_id', 'id');
+        return $this->belongsTo(Media::class, 'avatar_id', 'id')->withDefault(['name' => 'default.jpg']);
     }
 
     public function post()

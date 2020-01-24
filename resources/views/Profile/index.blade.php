@@ -5,7 +5,7 @@
     <header class="row justify-content-sm-center">
         <div class="col-md-2">
             <img class="rounded-circle" style="width: 150px; height: 150px"
-                 src="{{asset('storage/media/'.$avatar)}}"
+                 src="{{asset('storage/media/'.$user->media->name)}}"
                  alt="avatar">
         </div>
         <section class="col-md-6 pt-4 ml-5">
@@ -42,10 +42,10 @@
             </div>
             <ul class="list-unstyled list-group list-group-horizontal">
                 <li class="p-3 bg-light"><span><span class="mr-1">{{$user->post->count()}}</span>posts</span></li>
-                <li class="p-3 bg-light"><span><span class="mr-1">{{$user->followers()->where('status',1)->count()}}</span><a
+                <li class="p-3 bg-light"><span><span class="mr-1">{{$followers}}</span><a
                             class="text-dark text-decoration-none" href="{{route('followers', $user->username)}}">followers</a></span>
                 </li>
-                <li class="p-3 bg-light"><span><span class="mr-1">{{$user->followings()->where('status',1)->count()}}</span><a
+                <li class="p-3 bg-light"><span><span class="mr-1">{{$followings}}</span><a
                             class="text-dark text-decoration-none" href="{{route('followings', $user->username)}}">following</a></span>
                 </li>
             </ul>
