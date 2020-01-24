@@ -38,7 +38,6 @@ class User extends Authenticatable
     ];
 
 
-
     public function getRouteKeyName()
     {
         return 'username';
@@ -59,7 +58,7 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class,
             'followers',
             'user_id',
-            'follower_id');
+            'follower_id')->withPivot('status');
     }
 
     public function followings()

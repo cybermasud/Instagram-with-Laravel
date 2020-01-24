@@ -21,11 +21,33 @@
                             href={{route('post.create')}}>New Post</a>
                     </button>
                 @endcan
+                @cannot('show',$user)
+                    <button class="btn btn-outline-light ">
+                        @if($is_following)
+                            <a
+                                class="font-weight-bold border rounded text-dark text-decoration-none p-1"
+                                href={{route('unfollow', $user->username)}}>Unfollow</a>
+                        @elseif($follow_requested)
+                            <a
+                                class="font-weight-bold border rounded text-dark text-decoration-none p-1"
+                                href="#">Requested</a>
+                        @else
+                            <a
+                                class="font-weight-bold border rounded text-dark text-decoration-none p-1"
+                                href={{route('follow', $user->username)}}>Follow</a>
+                        @endif
+                    </button>
+                @endcannot
+
             </div>
             <ul class="list-unstyled list-group list-group-horizontal">
-                <li class="p-3 bg-light"><span><span class="mr-1">0</span>posts</span></li>
-                <li class="p-3 bg-light"><span><span class="mr-1">0</span>followers</span></li>
-                <li class="p-3 bg-light"><span><span class="mr-1">0</span>following</span></li>
+                <li class="p-3 bg-light"><span><span class="mr-1">{{$user->post->count()}}</span>posts</span></li>
+                <li class="p-3 bg-light"><span><span class="mr-1">{{$user->followers()->where('status',1)->count()}}</span><a
+                            class="text-dark text-decoration-none" href="{{route('followers', $user->username)}}">followers</a></span>
+                </li>
+                <li class="p-3 bg-light"><span><span class="mr-1">{{$user->followings()->where('status',1)->count()}}</span><a
+                            class="text-dark text-decoration-none" href="{{route('followings', $user->username)}}">following</a></span>
+                </li>
             </ul>
             <div class="pl-3">
                 <div><h5>Bio</h5></div>

@@ -19,8 +19,13 @@ class ProfileController extends Controller
      */
     public function index(User $user)
     {
+        $is_following = $user->followers()->where('follower_id', Auth::id())->where('status', 1)->exists();
+        $follow_requested = $user->followers()->where('follower_id', Auth::id())->where('status', null)->exists();
         $avatar = optional($user->media)->name ?? 'default.jpg';
-        return view('profile.index', ['user' => $user, 'avatar' => $avatar]);
+        return view('profile.index', ['user' => $user,
+            'avatar' => $avatar,
+            'is_following' => $is_following,
+            'follow_requested' => $follow_requested]);
     }
 
     /**
@@ -93,5 +98,21 @@ class ProfileController extends Controller
     {
         Auth::user()->followers()->updateExistingPivot($user->id, ['status' => 1]);
         return redirect()->back();
+    }
+
+    public function showFollowers(User $user)
+    {
+        return view('profile.followers', ['user' => $user,
+            'followers' => $user->followers()->where('status', 1)->get(),
+            'follow_requests' => $user->followers()->where('status', null)->get()
+        ]);
+    }
+
+    public function showFollowings(User $user)
+    {
+        return view('profile.followings', ['user' => $user,
+            'followings' => $user->followings()->where('status', 1)->get(),
+            'follow_requests' => $user->followings()->where('status', null)->get()
+        ]);
     }
 }

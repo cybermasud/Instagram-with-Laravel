@@ -18,16 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('{user}/follow', 'ProfileController@followUser');
+Route::middleware('auth')
+    ->group(function () {
+    Route::get('{user}/follow', 'ProfileController@followUser')->name('follow');
+    Route::get('{user}/unfollow', 'ProfileController@unfollowUser')->name('unfollow');
+    Route::get('{user}/accept', 'ProfileController@acceptFollowRequest')->name('accept_follow_request');
+    Route::get('{user}/followers', 'ProfileController@showFollowers')->name('followers');
+    Route::get('{user}/followings', 'ProfileController@showFollowings')->name('followings');
+});
 
-Route::get('{user}/unfollow', 'ProfileController@unfollowUser');
-
-Route::get('{user}/accept', 'ProfileController@acceptFollowRequest');
 
 Route::middleware('auth')->get('/', 'HomeController@index')->name('home');
 
 
-Route::middleware(['auth'])
+Route::middleware('auth')
     ->name('post.')
     ->prefix('post/')
     ->group(function () {
@@ -38,6 +42,7 @@ Route::middleware(['auth'])
         Route::delete('{post}', 'PostController@destroy')->name('destroy')->middleware('can:update,post');;
     });
 Route::get('post/{post}', 'PostController@show')->name('post.show');
+
 
 Route::get('{user}', [ProfileController::class, 'index'])->name('profile.show');
 
