@@ -64,7 +64,7 @@
                     <a href="{{route('post.show', $post->id)}}">
                         <img style="max-width: 100%; max-height: 100%"
                              src="{{asset('storage/media/'.$post->media->name)}}"
-                             alt="avatar">
+                             alt="post">
                     </a>
                 </div>
             @endforeach
