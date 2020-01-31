@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <h4>Followings</h4>
                         @foreach($followings as $following)
-                            <div><a href="{{route('profile.show',$following->name)}}">{{$following->name}}</a>
+                            <div><a href="{{route('profile.show',$following->username)}}">{{$following->username}}</a>
                                 @can('show',$user)
                                     ---------><a href="{{route('unfollow',$following->name)}}">Unfollow</a>
                                 @endcan
@@ -20,7 +20,7 @@
                             <h4>Follow Requests</h4>
                             @foreach($follow_requests as $request)
                                 <div>
-                                    <a href="{{route('profile.show',$request->name)}}">{{$request->name}}</a>
+                                    <a href="{{route('profile.show',$request->username)}}">{{$request->username}}</a>
                                 </div>
                             @endforeach
                         </div>

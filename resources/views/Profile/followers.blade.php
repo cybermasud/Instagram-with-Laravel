@@ -10,7 +10,7 @@
                         <h4>Followers</h4>
                         @foreach($followers as $follower)
                             <div>
-                                <a href="{{route('profile.show',$follower->name)}}">{{$follower->name}}</a>
+                                <a href="{{route('profile.show',$follower->username)}}">{{$follower->username}}</a>
                             </div>
                         @endforeach
                         <hr>
@@ -18,9 +18,9 @@
                             <h4>Follow Requests</h4>
                             @foreach($follow_requests as $request)
                                 <div>
-                                    <a href="{{route('profile.show',$request->name)}}">{{$request->name}}</a>
+                                    <a href="{{route('profile.show',$request->username)}}">{{$request->username}}</a>
                                     @can('show',$user)
-                                        --------><a href="{{route('accept_follow_request',$request->name)}}">Accept</a>
+                                        --------><a href="{{route('accept_follow_request',$request->username)}}">Accept</a>
                                     @endcan
                                 </div>
                             @endforeach

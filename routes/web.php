@@ -16,7 +16,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
 Auth::routes();
+
 
 Route::middleware('auth')
     ->group(function () {
@@ -42,6 +44,15 @@ Route::middleware('auth')
         Route::delete('{post}', 'PostController@destroy')->name('destroy')->middleware('can:update,post');
     });
 Route::get('post/{post}', 'PostController@show')->name('post.show');
+
+
+Route::post('post/{post}/comment', 'CommentController@store')->name('comment.store')->middleware('auth');
+Route::delete('{comment}/delete', 'CommentController@destroy')->name('comment.destroy')->middleware(['auth','can:delete,comment']);
+
+
+Route::get('post/{post}/like', 'LikeController@like')->name('like')->middleware('auth');
+Route::get('post/{post}/unlike', 'LikeController@unlike')->name('unlike')->middleware(['auth']);
+Route::get('post/{post}/likes','LikeController@showLikedUsers')->name('liked.users');
 
 
 Route::get('{user}', [ProfileController::class, 'index'])->name('profile.show');

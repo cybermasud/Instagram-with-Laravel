@@ -9,7 +9,7 @@ class Post extends Model
 {
     protected $table = 'posts';
 
-    protected $with = 'media';
+    protected $with = ['media','comments','likes'];
 
     protected $dispatchesEvents = [
         'deleted' => MediaDeleted::class
@@ -25,5 +25,15 @@ class Post extends Model
     public function media()
     {
         return $this->belongsTo(Media::class, 'media_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }
