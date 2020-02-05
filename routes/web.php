@@ -51,7 +51,7 @@ Route::delete('{comment}/delete', 'CommentController@destroy')->name('comment.de
 
 
 Route::get('post/{post}/like', 'LikeController@like')->name('like')->middleware('auth');
-Route::get('post/{post}/unlike', 'LikeController@unlike')->name('unlike')->middleware(['auth']);
+Route::get('post/{post}/unlike', 'LikeController@unlike')->name('unlike')->middleware('auth');
 Route::get('post/{post}/likes','LikeController@showLikedUsers')->name('liked.users');
 
 

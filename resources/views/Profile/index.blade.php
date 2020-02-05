@@ -21,23 +21,25 @@
                             href={{route('post.create')}}>New Post</a>
                     </button>
                 @endcan
-                @cannot('show',$user)
-                    <button class="btn btn-outline-light ">
-                        @if($is_following)
-                            <a
-                                class="font-weight-bold border rounded text-dark text-decoration-none p-1"
-                                href={{route('unfollow', $user->username)}}>Unfollow</a>
-                        @elseif($follow_requested)
-                            <a
-                                class="font-weight-bold border rounded text-dark text-decoration-none p-1"
-                                href="#">Requested</a>
-                        @else
-                            <a
-                                class="font-weight-bold border rounded text-dark text-decoration-none p-1"
-                                href={{route('follow', $user->username)}}>Follow</a>
-                        @endif
-                    </button>
-                @endcannot
+                @auth
+                    @cannot('show',$user)
+                        <button class="btn btn-outline-light ">
+                            @if($is_following)
+                                <a
+                                    class="font-weight-bold border rounded text-dark text-decoration-none p-1"
+                                    href={{route('unfollow', $user->username)}}>Unfollow</a>
+                            @elseif($follow_requested)
+                                <a
+                                    class="font-weight-bold border rounded text-dark text-decoration-none p-1"
+                                    href="#">Requested</a>
+                            @else
+                                <a
+                                    class="font-weight-bold border rounded text-dark text-decoration-none p-1"
+                                    href={{route('follow', $user->username)}}>Follow</a>
+                            @endif
+                        </button>
+                    @endcannot
+                @endauth
 
             </div>
             <ul class="list-unstyled list-group list-group-horizontal">
