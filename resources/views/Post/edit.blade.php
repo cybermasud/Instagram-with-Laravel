@@ -13,7 +13,7 @@
                     <div class="card-header">Edit Post</div>
                     <div class="card-body justify-content-center">
                         <div class="row justify-content-center mb-4">
-                            <img src="{{asset('storage/media/'.$post->media->name)}}"
+                            <img src="{{asset($post->media->name)}}"
                                  alt="post"
                                  style="max-width: 100%; max-height: 100%">
                         </div>

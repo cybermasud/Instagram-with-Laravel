@@ -12,19 +12,19 @@
                             <div>
                                 <div>
                                     <a href="{{route('post.show',$post->id)}}"><img
-                                            src="{{asset('storage/media/'.$post->media->name)}}" alt="post"
+                                            src="{{asset($post->media->name)}}" alt="post"
                                             style="max-width: 100%; max-height: 100%"></a>
                                 </div>
                                 <div>
                                     @if(!in_array(\Illuminate\Support\Facades\Auth::id(),$post->likes->pluck('user_id')->toArray()))
                                         <a href="{{route('like',$post->id)}}"><img
-                                                src="{{asset('storage/media/like.jpg')}}"
+                                                src="{{asset('images/like.jpg')}}"
                                                 style="height: 30px;width: 30px"
                                                 alt="like">
                                         </a>
                                     @else
                                         <a href="{{route('unlike',$post->id)}}"><img
-                                                src="{{asset('storage/media/liked.jpg')}}"
+                                                src="{{asset('images/liked.jpg')}}"
                                                 style="height: 30px;width: 30px"
                                                 alt="like">
                                         </a>
@@ -38,7 +38,7 @@
                                     <div>
                                         <a href="{{route('profile.show',$post->user->username)}}"><img
                                                 class="rounded-circle" style="width: 50px; height: 50px"
-                                                src="{{asset('storage/media/'.$post->user->media->name)}}"
+                                                src="{{asset($post->user->media->name)}}"
                                                 alt="avatar"></a>
                                         <div>
                                             <a href="{{route('profile.show',$post->user->username)}}">{{$post->user->username}}</a>
@@ -51,7 +51,7 @@
                                     <div>
                                         <p>Comments</p>
                                         <p><img class="rounded-circle" style="height: 30px;width: 30px"
-                                                src="{{asset('storage/media/'. $post->comments->first()->user->media->name)}}"
+                                                src="{{asset($post->comments->first()->user->media->name)}}"
                                                 alt="avatar">{{$post->comments->first()->user->username}}
                                             <span>{{$post->comments->first()->body}}</span>
                                         </p>

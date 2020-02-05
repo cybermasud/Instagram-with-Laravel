@@ -45,6 +45,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $post->load('media', 'comments', 'likes');
         return view('post.show', ['post' => $post]);
     }
 

@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\MediaDeleted;
+use App\Events\UserRetrieved;
 use App\Listeners\DeleteMedia;
+use App\Listeners\SetAvatar;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

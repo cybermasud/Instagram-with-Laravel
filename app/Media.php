@@ -23,7 +23,7 @@ class Media extends Model
     {
         $media = new Media();
         $request->file('img')->store('public/media');
-        $media->name = $request->file('img')->hashName();
+        $media->name = 'storage/media/' . $request->file('img')->hashName();
         $media->save();
         return $media->id;
     }

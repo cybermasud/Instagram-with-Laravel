@@ -24,6 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ['posts' => Post::query()->whereIn('user_id', Auth::user()->followings()->where('status', 1)->get()->pluck('id')->push(Auth::id()))->with(['user.media'])->latest()->get()]);
+        return view('home', ['posts' => Post::query()->whereIn('user_id', Auth::user()->followings()->where('status', 1)->get()->pluck('id')->push(Auth::id()))->with(['user.media','media','comments','likes'])->latest()->get()]);
     }
 }

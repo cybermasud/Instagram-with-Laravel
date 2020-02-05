@@ -9,7 +9,6 @@ class Post extends Model
 {
     protected $table = 'posts';
 
-    protected $with = ['media','comments','likes'];
 
     protected $dispatchesEvents = [
         'deleted' => MediaDeleted::class

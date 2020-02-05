@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\UserRetrieved;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,7 +45,7 @@ class User extends Authenticatable
 
     public function media()
     {
-        return $this->belongsTo(Media::class, 'avatar_id', 'id')->withDefault(['name' => 'default.jpg']);
+        return $this->belongsTo(Media::class, 'avatar_id')->withDefault(['name' => 'images/default.jpg']);
     }
 
     public function post()

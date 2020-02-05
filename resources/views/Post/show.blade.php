@@ -8,7 +8,7 @@
                     <div class="card-header">Post</div>
                     <div class="card-body row justify-content-center">
                         <div class="col-md-7 justify-content-center p-0">
-                            <img src="{{asset('storage/media/'.$post->media->name)}}"
+                            <img src="{{asset($post->media->name)}}"
                                  alt="post"
                                  style="max-width: 100%; max-height: 100%">
                         </div>
@@ -51,12 +51,12 @@
                             <div>
                                 <div class="mx-auto">
                                     @if(!in_array(\Illuminate\Support\Facades\Auth::id(),$post->likes->pluck('user_id')->toArray()))
-                                        <a href="{{route('like',$post->id)}}"><img src="{{asset('storage/media/like.jpg')}}"
+                                        <a href="{{route('like',$post->id)}}"><img src="{{asset('images/like.jpg')}}"
                                                                                    style="height: 30px;width: 30px"
                                                                                    alt="like">
                                         </a>
                                     @else
-                                        <a href="{{route('unlike',$post->id)}}"><img src="{{asset('storage/media/liked.jpg')}}"
+                                        <a href="{{route('unlike',$post->id)}}"><img src="{{asset('images/liked.jpg')}}"
                                                                                      style="height: 30px;width: 30px"
                                                                                      alt="like">
                                         </a>
@@ -73,7 +73,7 @@
                                                 href="{{route('profile.show',$comment->user->username)}}"><img
                                                     class="rounded-circle"
                                                     style="width: 50px; height: 50px;"
-                                                    src="{{asset('storage/media/'.$comment->user->media->name)}}"
+                                                    src="{{asset($comment->user->media->name)}}"
                                                     alt="avatar"></a></div>
                                         <div class="col-sm-9"><a class="text-decoration-none text-dark"
                                                                  href="{{route('profile.show',$comment->user->username)}}">{{$comment->user->username}}</a>

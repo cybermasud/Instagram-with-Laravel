@@ -19,6 +19,7 @@ class ProfileController extends Controller
      */
     public function index(User $user)
     {
+        $user->load('post.media');
         $is_following = $user->followers()->where('follower_id', Auth::id())->where('status', 1)->exists();
         $follow_requested = $user->followers()->where('follower_id', Auth::id())->where('status', null)->exists();
         $followings_count = $user->followings()->where('status', 1)->count();
