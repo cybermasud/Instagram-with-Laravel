@@ -54,8 +54,7 @@
                             <hr style="border-top: 1px solid #8c8c8c">
                             <div>
                                 <div class="mx-auto">
-                                    <!-- TODO this data should created in controller -->
-                                    @if(in_array(\Illuminate\Support\Facades\Auth::id(),$post->likes->pluck('user_id')->toArray()))
+                                    @if($post->likedByUser())
                                         <a href="{{route('unlike',$post->id)}}"><img src="{{asset('images/liked.jpg')}}"
                                                                                      style="height: 30px;width: 30px"
                                                                                      alt="like">

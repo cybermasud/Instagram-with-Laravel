@@ -19,12 +19,11 @@ Auth::routes();
 
 Route::middleware('auth')
     ->group(function () {
-        // TODO create seprate controller for follow related job
-        Route::get('{user}/follow', 'ProfileController@followUser')->name('follow');
-        Route::get('{user}/unfollow', 'ProfileController@unfollowUser')->name('unfollow');
-        Route::get('{user}/accept', 'ProfileController@acceptFollowRequest')->name('accept_follow_request');
-        Route::get('{user}/followers', 'ProfileController@showFollowers')->name('followers');
-        Route::get('{user}/followings', 'ProfileController@showFollowings')->name('followings');
+        Route::get('{user}/follow', 'FollowController@followUser')->name('follow');
+        Route::get('{user}/unfollow', 'FollowController@unfollowUser')->name('unfollow');
+        Route::get('{user}/accept', 'FollowController@acceptFollowRequest')->name('accept_follow_request');
+        Route::get('{user}/followers', 'FollowController@showFollowers')->name('followers');
+        Route::get('{user}/followings', 'FollowController@showFollowings')->name('followings');
     });
 
 Route::middleware('auth')->get('/', 'HomeController@index')->name('home');
