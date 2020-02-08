@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::middleware('auth:api')->get('posts', function () {
-    return response()->json(['posts' => Post::query()->whereIn('user_id', Auth::user()->followings()->where('status', 1)->get())->with(['media'])->latest()->select(['id','body','created_at','media_id'])->get()]);
+    return response()->json(['posts' =>
+    // TODO this can connect to HomeController@index with sending parameters
+    Post::query()->whereIn('user_id', Auth::user()->followings()->where('status', 1)->get())->with(['media'])->latest()->select(['id', 'body', 'created_at', 'media_id'])->get()]);
 });
 Route::post('login', [AuthController::class, 'login']);

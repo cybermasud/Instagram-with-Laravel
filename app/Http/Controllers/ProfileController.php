@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers;
-
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Media;
@@ -38,7 +36,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $user = Auth::user();
+        $user = Auth::user(); // todo remove extra variable $user => ['user' => Auth::user()]
         return view('profile.edit', ['user' => $user]);
     }
 
@@ -54,6 +52,8 @@ class ProfileController extends Controller
         if ($request->has('img')) {
             optional(Auth::user()->media)->delete();
             $user->avatar_id = Media::storeMedia($request);
+            // todo ذخیره کردن فایل در استوریج بهتر است در جایی غیر از مدل نوشته شود مثلا یک متد در همین کلاس
+            // در واقع شی رکویست نباید به مدل ارسال شود.
         }
         $user->name = $request->input('name');
         $user->username = $request->input('username');
@@ -70,6 +70,7 @@ class ProfileController extends Controller
      */
     public function followUser(User $user)
     {
+        // TODO this query use less memory $user->followers()->wherePivot('follower_id',auth()->id)->exists();
         if (!$user->followers->pluck('id')->contains(Auth::id())) {
             $user->followers()->attach(Auth::id());
         }
@@ -84,7 +85,7 @@ class ProfileController extends Controller
      */
     public function unfollowUser(User $user)
     {
-        if ($user->followers->pluck('id')->contains(Auth::id())) {
+        if ($user->followers->pluck('id')->contains(Auth::id())) { // TODO create a method for this (for example: hasRelation())
             $user->followers()->detach(Auth::id());
         }
         return redirect()->back();
