@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        Post::query()->create([ // TODO use relation for creating auth()->user()->post()->create()
+        auth()->user()->post()->create([
             'user_id' => Auth::id(),
             'media_id' => Media::storeMedia($request),
             'body' => $request->input('caption')

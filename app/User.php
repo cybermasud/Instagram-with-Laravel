@@ -37,7 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // TODO add comment
+    /**
+     * route model binding with username instead of user id
+     *
+     * @return string
+     */
     public function getRouteKeyName()
     {
         return 'username';

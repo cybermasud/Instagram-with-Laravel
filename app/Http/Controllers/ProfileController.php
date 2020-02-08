@@ -36,8 +36,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $user = Auth::user(); // todo remove extra variable $user => ['user' => Auth::user()]
-        return view('profile.edit', ['user' => $user]);
+        return view('profile.edit', ['user' => Auth::user()]);
     }
 
     /**
