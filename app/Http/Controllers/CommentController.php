@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Http\Requests\CommentRequest;
 use App\Post;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
@@ -24,5 +25,15 @@ class CommentController extends Controller
         return back();
     }
 
-    // TODO owner of the comment can update his/her comment text
+    public function edit(Comment $comment)
+    {
+        return view('comment_edit', ['comment' => $comment]);
+    }
+
+    public function update(Comment $comment, CommentRequest $request)
+    {
+        $comment->body = $request->input('body');
+        $comment->save();
+        return back();
+    }
 }

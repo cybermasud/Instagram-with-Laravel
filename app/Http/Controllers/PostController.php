@@ -65,9 +65,11 @@ class PostController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\Post $post
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Post $post)
     {
+        $this->validate($request,['nullable', 'string', 'max:1000']);
         $post->body = $request->input('caption');
         $post->save();
         return redirect(route('post.edit', $post->id))->with('message', 'Post Updated Successfully');

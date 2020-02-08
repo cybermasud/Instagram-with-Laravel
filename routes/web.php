@@ -41,6 +41,8 @@ Route::middleware('auth')
 Route::get('post/{post}', 'PostController@show')->name('post.show');
 
 Route::post('post/{post}/comment', 'CommentController@store')->name('comment.store')->middleware('auth');
+Route::get('comment/{comment}/edit', 'CommentController@edit')->name('comment.edit')->middleware('auth','can:update,comment');
+Route::post('comment/{comment}', 'CommentController@update')->name('comment.update')->middleware('auth','can:update,comment');
 Route::delete('{comment}/delete', 'CommentController@destroy')->name('comment.destroy')->middleware(['auth', 'can:delete,comment']);
 
 Route::get('post/{post}/like', 'LikeController@like')->name('like')->middleware('auth');

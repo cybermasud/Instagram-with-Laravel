@@ -24,4 +24,9 @@ class CommentPolicy
     {
         return (int)$user->id === (int)$comment->user_id || $user->post()->get()->pluck('id')->contains($comment->post_id);
     }
+
+    public function update(User $user, Comment $comment)
+    {
+        return (int)$user->id === (int)$comment->user_id;
+    }
 }

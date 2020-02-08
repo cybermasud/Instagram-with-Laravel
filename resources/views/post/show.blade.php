@@ -60,12 +60,13 @@
                                                                                      alt="like">
                                         </a>
                                     @else
-                                        <a href="@auth{{route('like',$post->id)}}@endauth#"><img src="{{asset('images/like.jpg')}}"
-                                                                                   style="height: 30px;width: 30px"
-                                                                                   alt="like">
+                                        <a href="@auth{{route('like',$post->id)}}@endauth#"><img
+                                                src="{{asset('images/like.jpg')}}"
+                                                style="height: 30px;width: 30px"
+                                                alt="like">
                                         </a>
-                                    @endif
-                                    <!-- TODO use withCount instead of with for number -->
+                                @endif
+                                <!-- TODO use withCount instead of with for number -->
                                     <span class="ml-2"><a class="text-decoration-none text-dark"
                                                           href="{{route('liked.users',$post->id)}}">{{$post->likes->count()}} likes</a>
                                     </span>
@@ -96,6 +97,13 @@
                                                                     delete
                                                                 </button>
                                                             </form>
+                                                            @can('update',$comment)
+                                                                <button type="submit"
+                                                                        class="btn btn-sm btn-outline-primary rounded px-1">
+                                                                    <a class="text-primary text-decoration-none"
+                                                                       href="{{route('comment.edit',$comment)}}">update</a>
+                                                                </button>
+                                                            @endcan
                                                         </div>
                                                     @endcan
                                                 @endauth
