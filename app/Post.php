@@ -4,6 +4,7 @@ namespace App;
 
 use App\Events\MediaDeleted;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -38,6 +39,6 @@ class Post extends Model
 
     public function likedByUser()
     {
-        return in_array(\Illuminate\Support\Facades\Auth::id(), $this->likes->pluck('user_id')->toArray());
+        return $this->likes->pluck('user_id')->contains(Auth::id());
     }
 }

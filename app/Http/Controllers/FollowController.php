@@ -16,8 +16,7 @@ class FollowController extends Controller
      */
     public function followUser(User $user)
     {
-        // TODO this query use less memory $user->followers()->wherePivot('follower_id',auth()->id)->exists();
-        if (!$user->followers->pluck('id')->contains(Auth::id())) {
+        if (!$this->isFollowing($user)) {
             $user->followers()->attach(Auth::id());
         }
         return redirect()->back();
@@ -31,7 +30,7 @@ class FollowController extends Controller
      */
     public function unfollowUser(User $user)
     {
-        if ($user->followers->pluck('id')->contains(Auth::id())) { // TODO create a method for this (for example: hasRelation())
+        if ($this->isFollowing($user)) {
             $user->followers()->detach(Auth::id());
         }
         return redirect()->back();
@@ -75,5 +74,10 @@ class FollowController extends Controller
             'followings' => $user->followings()->where('status', 1)->get(),
             'follow_requests' => $user->followings()->where('status', null)->get()
         ]);
+    }
+
+    private function isFollowing($user)
+    {
+        return $user->followers()->wherePivot('follower_id', Auth::id())->exists();
     }
 }
