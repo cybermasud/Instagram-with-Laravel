@@ -35,4 +35,9 @@ class Post extends Model
     {
         return $this->hasMany(Like::class);
     }
+
+    public function likedByUser()
+    {
+        return in_array(\Illuminate\Support\Facades\Auth::id(), $this->likes->pluck('user_id')->toArray());
+    }
 }

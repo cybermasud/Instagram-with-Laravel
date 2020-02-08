@@ -22,7 +22,6 @@ class PostPolicy
 
     public function update(User $user, Post $post)
     {
-        // TODO $user->id is int and $post->user_id is string so always return false use casting (int) like routes/channel.php
-        return $user->id === $post->user_id;
+        return (int)$user->id === (int)$post->user_id;
     }
 }

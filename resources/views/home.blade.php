@@ -30,7 +30,7 @@
                         <div class="card-body p-2">
 
                             <div>
-                                @if(!in_array(\Illuminate\Support\Facades\Auth::id(),$post->likes->pluck('user_id')->toArray()))
+                                @if(!$post->likedByUser())
                                     <a href="{{route('like',$post->id)}}"><img
                                             src="{{asset('images/like.jpg')}}"
                                             style="height: 20px;width: 20px"
