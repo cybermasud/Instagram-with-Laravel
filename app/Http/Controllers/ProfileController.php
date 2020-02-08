@@ -50,14 +50,27 @@ class ProfileController extends Controller
         $user = Auth::user();
         if ($request->has('img')) {
             optional(Auth::user()->media)->delete();
-            $user->avatar_id = Media::storeMedia($request);
-            // todo ذخیره کردن فایل در استوریج بهتر است در جایی غیر از مدل نوشته شود مثلا یک متد در همین کلاس
-            // در واقع شی رکویست نباید به مدل ارسال شود.
+            $user->avatar_id = $this->storeMedia($request);
         }
         $user->name = $request->input('name');
         $user->username = $request->input('username');
         $user->bio = $request->input('bio');
         $user->save();
         return redirect(route('account.edit'));
+    }
+
+    /**
+     * storing post or profile images
+     *
+     * @param $request
+     * @return mixed
+     */
+    public static function storeMedia($request)
+    {
+        $media = new Media();
+        $request->file('img')->store('public/media');
+        $media->name = 'storage/media/' . $request->file('img')->hashName();
+        $media->save();
+        return $media->id;
     }
 }

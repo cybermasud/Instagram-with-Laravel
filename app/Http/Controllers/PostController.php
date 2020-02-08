@@ -30,7 +30,7 @@ class PostController extends Controller
     {
         auth()->user()->post()->create([
             'user_id' => Auth::id(),
-            'media_id' => Media::storeMedia($request),
+            'media_id' => ProfileController::storeMedia($request),
             'body' => $request->input('caption')
         ]);
         return redirect(route('post.create'))->with('message', 'Post Created Successfully');
