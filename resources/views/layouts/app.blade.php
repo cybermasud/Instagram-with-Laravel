@@ -22,13 +22,13 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
+    <nav class="navbar navbar-expand-sm navbar-light sticky-top bg-white shadow-sm mb-xl-5">
+        <div class="container justify-content-center">
+            <a class="navbar-brand col-md-8" href="{{ url('/') }}">
                 Maktabgram
             </a>
 
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav col-md-1">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
@@ -41,7 +41,7 @@
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" style="font-size: larger" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->username }} <span class="caret"></span>
                         </a>
@@ -69,7 +69,7 @@
     </nav>
 
 
-    <main class="container min-vh-100 py-4">
+    <main class="container min-vh-100">
         @yield('content')
     </main>
     <footer class="modal-footer mt-3" style="height: 50px">
