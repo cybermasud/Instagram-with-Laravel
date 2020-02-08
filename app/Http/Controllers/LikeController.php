@@ -18,8 +18,7 @@ class LikeController extends Controller
 
     public function showLikedUsers(Post $post)
     {
-        // TODO use eager loading for owner of like
-        return view('liked_users', ['likes' => $post->likes]);
+        return view('liked_users', ['likes' => $post->likes()->with('user.media')->get()]);
     }
 
     public function unlike(Post $post)
