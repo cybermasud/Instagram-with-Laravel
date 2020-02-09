@@ -54,6 +54,7 @@
                             <hr style="border-top: 1px solid #8c8c8c">
                             <div>
                                 <div class="mx-auto">
+                                    <!-- TODO this data should created in controller -->
                                     @if(in_array(\Illuminate\Support\Facades\Auth::id(),$post->likes->pluck('user_id')->toArray()))
                                         <a href="{{route('unlike',$post->id)}}"><img src="{{asset('images/liked.jpg')}}"
                                                                                      style="height: 30px;width: 30px"
@@ -65,6 +66,7 @@
                                                                                    alt="like">
                                         </a>
                                     @endif
+                                    <!-- TODO use withCount instead of with for number -->
                                     <span class="ml-2"><a class="text-decoration-none text-dark"
                                                           href="{{route('liked.users',$post->id)}}">{{$post->likes->count()}} likes</a>
                                     </span>

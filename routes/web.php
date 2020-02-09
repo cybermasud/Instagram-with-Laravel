@@ -11,27 +11,23 @@
 |
 */
 
-
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-
 Route::middleware('auth')
     ->group(function () {
-    Route::get('{user}/follow', 'ProfileController@followUser')->name('follow');
-    Route::get('{user}/unfollow', 'ProfileController@unfollowUser')->name('unfollow');
-    Route::get('{user}/accept', 'ProfileController@acceptFollowRequest')->name('accept_follow_request');
-    Route::get('{user}/followers', 'ProfileController@showFollowers')->name('followers');
-    Route::get('{user}/followings', 'ProfileController@showFollowings')->name('followings');
-});
-
+        // TODO create seprate controller for follow related job
+        Route::get('{user}/follow', 'ProfileController@followUser')->name('follow');
+        Route::get('{user}/unfollow', 'ProfileController@unfollowUser')->name('unfollow');
+        Route::get('{user}/accept', 'ProfileController@acceptFollowRequest')->name('accept_follow_request');
+        Route::get('{user}/followers', 'ProfileController@showFollowers')->name('followers');
+        Route::get('{user}/followings', 'ProfileController@showFollowings')->name('followings');
+    });
 
 Route::middleware('auth')->get('/', 'HomeController@index')->name('home');
-
 
 Route::middleware('auth')
     ->name('post.')
@@ -45,18 +41,14 @@ Route::middleware('auth')
     });
 Route::get('post/{post}', 'PostController@show')->name('post.show');
 
-
 Route::post('post/{post}/comment', 'CommentController@store')->name('comment.store')->middleware('auth');
-Route::delete('{comment}/delete', 'CommentController@destroy')->name('comment.destroy')->middleware(['auth','can:delete,comment']);
-
+Route::delete('{comment}/delete', 'CommentController@destroy')->name('comment.destroy')->middleware(['auth', 'can:delete,comment']);
 
 Route::get('post/{post}/like', 'LikeController@like')->name('like')->middleware('auth');
 Route::get('post/{post}/unlike', 'LikeController@unlike')->name('unlike')->middleware('auth');
-Route::get('post/{post}/likes','LikeController@showLikedUsers')->name('liked.users');
-
+Route::get('post/{post}/likes', 'LikeController@showLikedUsers')->name('liked.users');
 
 Route::get('{user}', [ProfileController::class, 'index'])->name('profile.show');
-
 
 Route::middleware('auth')
     ->name('account.')

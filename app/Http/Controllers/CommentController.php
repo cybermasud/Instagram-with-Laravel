@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Http\Requests\CommentRequest;
 use App\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
@@ -24,4 +23,6 @@ class CommentController extends Controller
         $comment->delete();
         return back();
     }
+
+    // TODO owner of the comment can update his/her comment text
 }

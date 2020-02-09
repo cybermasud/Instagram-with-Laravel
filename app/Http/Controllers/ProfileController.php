@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers;
-
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Media;
@@ -19,7 +17,10 @@ class ProfileController extends Controller
      */
     public function index(User $user)
     {
-        $user->load('post.media');
+        $user->load('post.media'); // TODO do not use eager loading in this case (2 query)
+        /**
+         * User::query()->where('username', $user)->with('post.media')->firstOrFail() // 1 query
+         */
         $is_following = $user->followers()->where('follower_id', Auth::id())->where('status', 1)->exists();
         $follow_requested = $user->followers()->where('follower_id', Auth::id())->where('status', null)->exists();
         $followings_count = $user->followings()->where('status', 1)->count();
@@ -38,7 +39,7 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $user = Auth::user();
+        $user = Auth::user(); // todo remove extra variable $user => ['user' => Auth::user()]
         return view('profile.edit', ['user' => $user]);
     }
 
@@ -54,6 +55,7 @@ class ProfileController extends Controller
         if ($request->has('img')) {
             optional(Auth::user()->media)->delete();
             $user->avatar_id = Media::storeMedia($request);
+            // todo ذخیره کردن فایل در استوریج بهتر است در جایی غیر از مدل نوشته شود مثلا یک متد در همین کلاس
         }
         $user->name = $request->input('name');
         $user->username = $request->input('username');
@@ -70,6 +72,7 @@ class ProfileController extends Controller
      */
     public function followUser(User $user)
     {
+        // TODO this query use less memory $user->followers()->pluck('id');
         if (!$user->followers->pluck('id')->contains(Auth::id())) {
             $user->followers()->attach(Auth::id());
         }
@@ -84,7 +87,7 @@ class ProfileController extends Controller
      */
     public function unfollowUser(User $user)
     {
-        if ($user->followers->pluck('id')->contains(Auth::id())) {
+        if ($user->followers->pluck('id')->contains(Auth::id())) { // TODO $user->followers->pluck('id')->contains(Auth::id()) can become a method
             $user->followers()->detach(Auth::id());
         }
         return redirect()->back();

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +28,7 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        Post::query()->create([
+        Post::query()->create([ // TODO use relation for creating auth()->user()->post()->create()
             'user_id' => Auth::id(),
             'media_id' => Media::storeMedia($request),
             'body' => $request->input('caption')
@@ -72,7 +71,6 @@ class PostController extends Controller
         $post->body = $request->input('caption');
         $post->save();
         return redirect(route('post.edit', $post->id))->with('message', 'Post Updated Successfully');
-
     }
 
     /**
