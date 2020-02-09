@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -38,6 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // TODO add comment
     public function getRouteKeyName()
     {
         return 'username';
@@ -55,17 +55,21 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->belongsToMany(User::class,
+        return $this->belongsToMany(
+            User::class,
             'followers',
             'user_id',
-            'follower_id')->withPivot('status');
+            'follower_id'
+        )->withPivot('status');
     }
 
     public function followings()
     {
-        return $this->belongsToMany(User::class,
+        return $this->belongsToMany(
+            User::class,
             'followers',
             'follower_id',
-            'user_id');
+            'user_id'
+        );
     }
 }

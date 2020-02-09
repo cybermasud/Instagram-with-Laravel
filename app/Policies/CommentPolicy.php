@@ -23,6 +23,6 @@ class CommentPolicy
     public function delete(User $user, Comment $comment)
     {
         // TODO owner of the post can delete comment
-        return $user->id === (int)$comment->user_id;
+        return $user->id === $comment->user_id;
     }
 }

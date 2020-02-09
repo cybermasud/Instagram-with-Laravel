@@ -17,10 +17,7 @@ class ProfileController extends Controller
      */
     public function index(User $user)
     {
-        $user->load('post.media'); // TODO do not use eager loading in this case (2 query)
-        /**
-         * User::query()->where('username', $user)->with('post.media')->firstOrFail() // 1 query
-         */
+        $user->load('post.media');
         $is_following = $user->followers()->where('follower_id', Auth::id())->where('status', 1)->exists();
         $follow_requested = $user->followers()->where('follower_id', Auth::id())->where('status', null)->exists();
         $followings_count = $user->followings()->where('status', 1)->count();
@@ -56,6 +53,7 @@ class ProfileController extends Controller
             optional(Auth::user()->media)->delete();
             $user->avatar_id = Media::storeMedia($request);
             // todo ذخیره کردن فایل در استوریج بهتر است در جایی غیر از مدل نوشته شود مثلا یک متد در همین کلاس
+            // در واقع شی رکویست نباید به مدل ارسال شود.
         }
         $user->name = $request->input('name');
         $user->username = $request->input('username');
@@ -72,7 +70,7 @@ class ProfileController extends Controller
      */
     public function followUser(User $user)
     {
-        // TODO this query use less memory $user->followers()->pluck('id');
+        // TODO this query use less memory $user->followers()->wherePivot('follower_id',auth()->id)->exists();
         if (!$user->followers->pluck('id')->contains(Auth::id())) {
             $user->followers()->attach(Auth::id());
         }
@@ -87,7 +85,7 @@ class ProfileController extends Controller
      */
     public function unfollowUser(User $user)
     {
-        if ($user->followers->pluck('id')->contains(Auth::id())) { // TODO $user->followers->pluck('id')->contains(Auth::id()) can become a method
+        if ($user->followers->pluck('id')->contains(Auth::id())) { // TODO create a method for this (for example: hasRelation())
             $user->followers()->detach(Auth::id());
         }
         return redirect()->back();
